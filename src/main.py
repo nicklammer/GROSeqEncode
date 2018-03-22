@@ -14,10 +14,11 @@ def parse_tab_delimited_file(file1):
 			chrom,start,stop = line
 
 #Takes as input a list of bed files (full path)
-def bedtools_intersect(BEDS):
+def bedtools_intersect(BEDS,outdir):
 	command = "bedtools intersect -a " + BEDS[0] + " -b " + ' '.join(BEDS[1:])
 	print(command)
-	#os.system("bedtools intersect -a " + BEDS[0] + " -b " + ' '.join(BEDS[1:])
+	outfile = outdir+'rep_intersect.bed'
+	#os.system("bedtools intersect -a " + BEDS[0] + " -b " + ' '.join(BEDS[1:] + " > " + outfile)
 
 if __name__ == "__main__":
 	print("hello different world")
@@ -26,4 +27,5 @@ if __name__ == "__main__":
 	print(config.BEDS)
 	a = "hello"
 	print(a+" world2")
-	bedtools_intersect(config.BEDS)
+	outdir = '../temp_files/'
+	bedtools_intersect(config.BEDS,outdir)
