@@ -1,3 +1,3 @@
-BAMS1 = ['/full/path/to/bam1/rep1.bam','/full/path/to/bam1/rep2.bam']
-BAMS2 = ['/full/path/to/bam2/rep1.bam','/full/path/to/bam2/rep2.bam']
-BEDS = ['/full/path/to/bed1/rep1.bed','/full/path/to/bed1/rep2.bed']
+BAMS1 = ['/scratch/Users/nila7826/GROSeq/JR_rep1/__','/scratch/Users/nila7826/GROSeq/JR_rep2/__']
+BAMS2 = ['/scratch/Users/nila7826/GROSeq/JR_rep1/__','/scratch/Users/nila7826/GROSeq/JR_rep2/__']
+BEDS = ['/scratch/Users/nila7826/ENCODE/ENCFF001UEM.bed','/scratch/Users/nila7826/ENCODE/ENCFF001UEN.bed']

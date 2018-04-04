@@ -18,8 +18,8 @@
 #SBATCH --mem=100gb
 
 ### Setting to mail when the job is complete
-#SBATCH --error /scratch/Users/nila7826/GROSeqEncode/e_and_o/%x.err
-#SBATCH --output /scratch/Users/nila7826/GROSeqEncode/e_and_o/%x.out
+#SBATCH --error /scratch/Users/nila7826/e_and_o/%x.err
+#SBATCH --output /scratch/Users/nila7826/e_and_o/%x.out
 
 ### Set your email address
 #SBATCH --mail-type=ALL

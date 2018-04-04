@@ -1,10 +1,37 @@
 import os
 import some_script
 import config
+import intersect
+import HTSeq_script
+
+#Return parent directory
+def parent_dir(directory):
+    pathlist = directory.split('/')
+    newdir = '/'.join(pathlist[0:len(pathlist)-1])
+    
+    return newdir
 
 def run():
+	#Home directory
+    homedir = os.path.dirname(os.path.realpath(__file__))
+    filedir = parent_dir(homedir)+'/temp_files/'
+    figuredir = parent_dir(homedir)+'/figures/'
+    chipfile = filedir + 'rep_intersect.bed'
+
+	BAMS1 = config.BAMS1
+	BAMS2 = config.BAMS2
+	BEDS = config.BEDS
+	intersect.bedtools_intersect(BEDS,filedir)
+
+	htseq_results = HTSeq_script.run(chipfile,BAMS1,BAMS2)
+
+	#plot.run(htseq_results,figuredir)
+
+
+
 	print("hello world")
 	some_script.execute()
+
 
 def parse_tab_delimited_file(file1):
 	with open(file1) as F:
