@@ -1,4 +1,5 @@
 #bedtools intersect
+import os
 
 def bedtools_intersect(BEDS,outdir):
 	outfile = outdir + 'rep_intersect.bed'
