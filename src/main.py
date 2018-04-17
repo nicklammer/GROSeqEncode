@@ -25,9 +25,10 @@ def run():
 	
 	intersect.bedtools_intersect(BEDS,filedir)
 
-	flagstat.flagstat(BAMS1,BAMS2,filedir)
+	million_reads = flagstat.flagstat(BAMS1,BAMS2,filedir)
+	print (million_reads)
 
-	HTSeq_results = HTSeq_script.run(chipfile,BAMS1,BAMS2,millions_mapped_reads1,millions_mapped_reads2)
+	HTSeq_results = HTSeq_script.run(chipfile,BAMS1,BAMS2,million_reads)
 
 	outfile = open(filedir+'results.txt','w')
 	for list1 in HTSeq_results:
