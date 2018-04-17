@@ -3,7 +3,7 @@
 import HTSeq
 import numpy
 
-def run(BED,BAMS1,BAMS2):
+def run(BED,BAMS1,BAMS2,mapped1,mapped2):
 	sortedbamfile1rep1 = HTSeq.BAM_Reader(BAMS1[0])
 	sortedbamfile1rep2 = HTSeq.BAM_Reader(BAMS1[1])
 	sortedbamfile2rep1 = HTSeq.BAM_Reader(BAMS2[0])
@@ -24,7 +24,6 @@ def run(BED,BAMS1,BAMS2):
 		for almnt in sortedbamfile1rep1[region]:
 			counts1rep1[-1] += 1.0
 		counts1rep1[-1] /= length
-
 
 	counts1rep2 = list()
 	for region in bedfile:
@@ -49,6 +48,11 @@ def run(BED,BAMS1,BAMS2):
 		for almnt in sortedbamfile2rep2[region]:
 			counts2rep2[-1] += 1.0
 		counts2rep2[-1] /= length
+
+	counts1rep1 /= mapped1[0]
+	counts1rep2 /= mapped1[1]
+	counts2rep1 /= mapped2[0]
+	counts2rep2 /= mapped2[1]
 
 	counts1avg = [(x+y)/2.0 for x,y in zip(counts1rep1,counts1rep2)]
 	counts2avg = [(x+y)/2.0 for x,y in zip(counts2rep1,counts2rep2)]

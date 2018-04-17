@@ -1,6 +1,7 @@
 import os
 import config
 import intersect
+import flagstat
 import HTSeq_script
 import plot
 
@@ -18,14 +19,15 @@ def run():
 	figuredir = parent_dir(homedir)+'/figures/'
 	chipfile = filedir + 'rep_intersect.bed'
 
-	# print("HTSeq test run using 0 min time point")
-
 	BAMS1 = config.BAMS1
 	BAMS2 = config.BAMS2
 	BEDS = config.BEDS
+	
 	intersect.bedtools_intersect(BEDS,filedir)
 
-	HTSeq_results = HTSeq_script.run(chipfile,BAMS1,BAMS2)
+	flagstat.flagstat(BAMS1,BAMS2,filedir)
+
+	HTSeq_results = HTSeq_script.run(chipfile,BAMS1,BAMS2,millions_mapped_reads1,millions_mapped_reads2)
 
 	outfile = open(filedir+'results.txt','w')
 	for list1 in HTSeq_results:
