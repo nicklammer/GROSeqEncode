@@ -26,7 +26,6 @@ def run():
 	intersect.bedtools_intersect(BEDS,filedir)
 
 	million_reads = flagstat.flagstat(BAMS1,BAMS2,filedir)
-	print (million_reads)
 
 	HTSeq_results = HTSeq_script.run(chipfile,BAMS1,BAMS2,million_reads)
 
@@ -34,9 +33,14 @@ def run():
 	for list1 in HTSeq_results:
 		list1 = [str(x) for x in list1]
 		outfile.write('\t'.join(list1)+'\n')
-
-	plot.run(HTSeq_results,figuredir)
+	HTSeq_results_counts = [HTSeq_results[0],HTSeq_results[1]]
+	HTSeq_results_pvalue = HTSeq_results[2][1]
+	HTSeq_results_foldchange = HTSeq_results[3]
 	
+	#plot.plot1(HTSeq_results_plot1,figuredir)
+	#plot.foldchange(HTSeq_results_foldchange,figuredir)
+	#plot.scatter(HTSeq_results_plot1,figuredir)
+	plot.scatter_and_box(HTSeq_results_counts,HTSeq_results_pvalue,HTSeq_results_foldchange,figuredir)
 
 
 
