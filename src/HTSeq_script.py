@@ -15,7 +15,8 @@ def run(BED,BAMS1,BAMS2,mil_reads):
 		for line in F:
 			line = line.strip('\n').split('\t')
 			chrom,start,stop = line[:3]
-			bedfile.append(HTSeq.GenomicInterval(chrom,int(start),int(stop),'.'))
+			if len(chrom) <= 5:
+				bedfile.append(HTSeq.GenomicInterval(chrom,int(start),int(stop),'.'))
 
 	counts1rep1 = list()
 	for region in bedfile:
@@ -67,6 +68,7 @@ def run(BED,BAMS1,BAMS2,mil_reads):
 			counts1avgclean[i] = 0.0
 	counts1avgclean = [x for x in counts1avgclean if x!=0.0]
 	counts2avgclean = [x for x in counts2avgclean if x!=0.0]
+	
 	counts1avglog = [math.log10(x) for x in counts1avgclean]
 	counts2avglog = [math.log10(x) for x in counts2avgclean]
 

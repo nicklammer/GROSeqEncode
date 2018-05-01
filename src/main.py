@@ -53,14 +53,17 @@ def run():
 		batchcondition1 = config.batchcondition1
 		batchcondition2 = config.batchcondition2
 		batchfoldchange = []
+		pvalues = []
 
 		for i in range(len(TFs)):
 			chipfile = filedir + 'rep_intersect_'+str(i)+'.bed'
 			#batchfoldchange.append(pipe.run(batchBEDs[i],BAMS1,BAMS2,i,million_reads,filedir,chipfile))
 			intersect.bedtools_intersect(batchBEDs[i],filedir,i)
-			batchfoldchange.append(HTSeq_foldchange.run(chipfile,BAMS1,BAMS2,million_reads))
-		
-		plot.batch_foldchange(batchfoldchange,batchcondition1,batchcondition2,TFs,figuredir)
+			HTSeq_results = HTSeq_foldchange.run(chipfile,BAMS1,BAMS2,million_reads)
+			batchfoldchange.append(HTSeq_results[1])
+			pvalues.append(HTSeq_results[0][1])
+
+		plot.batch_foldchange(batchfoldchange,pvalues,batchcondition1,batchcondition2,TFs,figuredir)
 
 
 	else:

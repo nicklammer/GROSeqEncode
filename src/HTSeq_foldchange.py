@@ -15,7 +15,8 @@ def run(BED,BAMS1,BAMS2,mil_reads):
 		for line in F:
 			line = line.strip('\n').split('\t')
 			chrom,start,stop = line[:3]
-			bedfile.append(HTSeq.GenomicInterval(chrom,int(start),int(stop),'.'))
+			if len(chrom) <= 5:
+				bedfile.append(HTSeq.GenomicInterval(chrom,int(start),int(stop),'.'))
 
 	counts1rep1 = list()
 	for region in bedfile:
@@ -55,6 +56,19 @@ def run(BED,BAMS1,BAMS2,mil_reads):
 
 	counts1avg = [(x+y)/2.0 for x,y in zip(counts1rep1,counts1rep2)]
 	counts2avg = [(x+y)/2.0 for x,y in zip(counts2rep1,counts2rep2)]
+	#log10 but excludes 0 (removes both entries)
+	counts1avgclean = counts1avg
+	counts2avgclean = counts2avg
+	#so i decided to find any zero in the first list and make it zero in the second list, then clean it up after
+	for i in range(len(counts1avg)):
+		if counts1avg[i] == 0.0:
+			counts2avgclean[i] = 0.0
+		elif counts2avg[i] == 0.0:
+			counts1avgclean[i] = 0.0
+	counts1avgclean = [x for x in counts1avgclean if x!=0.0]
+	counts2avgclean = [x for x in counts2avgclean if x!=0.0]
+
+	KStest = stats.ks_2samp(counts1avgclean,counts2avgclean)
 	
 	#fold change
 	foldchange = []
@@ -71,4 +85,4 @@ def run(BED,BAMS1,BAMS2,mil_reads):
 		except:
 			pass
 
-	return foldchangelog
+	return [KStest, foldchangelog]
