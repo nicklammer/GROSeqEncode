@@ -2,7 +2,7 @@ outdir = '../temp_files/'
 BAMS1 = ['/scratch/Users/nila7826/GROSeq/JR_rep1/J52_trimmed.flip.fastq.bowtie2.sorted.bam','/scratch/Users/nila7826/GROSeq/JR_rep2/J5D451_GTCCGC_S3_L007and8_R1_001_trimmed.flip.fastq.bowtie2.sorted.bam']
 BAMS2 = ['/scratch/Users/nila7826/GROSeq/JR_rep1/J62_trimmed.flip.fastq.bowtie2.sorted.bam','/scratch/Users/nila7826/GROSeq/JR_rep2/J6C451_GTGAAA_S4_L007and8_R1_001_trimmed.flip.fastq.bowtie2.sorted.bam']
 #using 'single' for 1 TF or 'batch' for 2+
-option = 'single'
+option = 'batch'
 #config for 1 TF
 BEDS = ['/scratch/Users/nila7826/ENCODE/JUND/ENCFF833ZRV.bed','/scratch/Users/nila7826/ENCODE/JUND/ENCFF973IDD.bed']
 TF = 'JUND'

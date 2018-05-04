@@ -15,9 +15,15 @@ def run(BED,BAMS1,BAMS2,mil_reads):
 		for line in F:
 			line = line.strip('\n').split('\t')
 			chrom,start,stop = line[:3]
+			start = int(start)
+			stop = int(stop)
 			if len(chrom) <= 5:
 				#i added a window because it looked like we were missing peaks without it
-				bedfile.append(HTSeq.GenomicInterval(chrom,int(start)-1000,int(stop)+1000,'.'))
+				if start < 1000:
+					bedfile.append(HTSeq.GenomicInterval(chrom,0,stop+1000,'.'))
+				#do i need an elif for the end range as well?
+				else:
+					bedfile.append(HTSeq.GenomicInterval(chrom,start-1000,stop+1000,'.'))
 
 	counts1rep1 = list()
 	for region in bedfile:
