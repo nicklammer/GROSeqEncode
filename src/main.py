@@ -5,7 +5,6 @@ import flagstat
 import HTSeq_script
 import HTSeq_foldchange
 import plot
-import pipe
 
 #Return parent directory
 def parent_dir(directory):
@@ -57,7 +56,6 @@ def run():
 
 		for i in range(len(TFs)):
 			chipfile = filedir + 'rep_intersect_'+str(i)+'.bed'
-			#batchfoldchange.append(pipe.run(batchBEDs[i],BAMS1,BAMS2,i,million_reads,filedir,chipfile))
 			intersect.bedtools_intersect(batchBEDs[i],filedir,i)
 			HTSeq_results = HTSeq_foldchange.run(chipfile,BAMS1,BAMS2,million_reads)
 			batchfoldchange.append(HTSeq_results[1])

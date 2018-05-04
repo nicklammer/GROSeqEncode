@@ -21,7 +21,7 @@ def run(BED,BAMS1,BAMS2,mil_reads):
 				#i added a window because it looked like we were missing peaks without it
 				if start < 1000:
 					bedfile.append(HTSeq.GenomicInterval(chrom,0,stop+1000,'.'))
-				#do i need an elif for the end range as well?
+				#normalizing for length below is not totally accurate because of this, but it's probably okay
 				else:
 					bedfile.append(HTSeq.GenomicInterval(chrom,start-1000,stop+1000,'.'))
 
