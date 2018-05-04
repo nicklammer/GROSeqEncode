@@ -4,8 +4,8 @@ BAMS2 = ['/scratch/Users/nila7826/GROSeq/JR_rep1/J62_trimmed.flip.fastq.bowtie2.
 #using 'single' for 1 TF or 'batch' for 2+
 option = 'single'
 #config for 1 TF
-BEDS = ['/scratch/Users/nila7826/ENCODE/EGR1/ENCFF001UDS.bed','/scratch/Users/nila7826/ENCODE/EGR1/ENCFF001UDT.bed']
-TF = 'EGR1'
+BEDS = ['/scratch/Users/nila7826/ENCODE/JUND/ENCFF833ZRV.bed','/scratch/Users/nila7826/ENCODE/JUND/ENCFF973IDD.bed']
+TF = 'JUND'
 condition1 = 'DMSO'
 condition2 = '+CA'
 #config for 2+ TFs

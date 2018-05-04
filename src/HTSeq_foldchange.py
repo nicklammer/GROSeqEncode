@@ -16,12 +16,12 @@ def run(BED,BAMS1,BAMS2,mil_reads):
 			line = line.strip('\n').split('\t')
 			chrom,start,stop = line[:3]
 			if len(chrom) <= 5:
-				bedfile.append(HTSeq.GenomicInterval(chrom,int(start),int(stop),'.'))
+				bedfile.append(HTSeq.GenomicInterval(chrom,int(start)-1000,int(stop)+1000,'.'))
 
 	counts1rep1 = list()
 	for region in bedfile:
 		counts1rep1.append(0.0)
-		length = region.length
+		length = region.length+2000
 		for almnt in sortedbamfile1rep1[region]:
 			counts1rep1[-1] += 1.0
 		counts1rep1[-1] /= (length/1000.0)
@@ -30,7 +30,7 @@ def run(BED,BAMS1,BAMS2,mil_reads):
 	counts1rep2 = list()
 	for region in bedfile:
 		counts1rep2.append(0.0)
-		length = region.length
+		length = region.length+2000
 		for almnt in sortedbamfile1rep2[region]:
 			counts1rep2[-1] += 1.0
 		counts1rep2[-1] /= (length/1000.0)
@@ -39,7 +39,7 @@ def run(BED,BAMS1,BAMS2,mil_reads):
 	counts2rep1 = list()
 	for region in bedfile:
 		counts2rep1.append(0.0)
-		length = region.length
+		length = region.length+2000
 		for almnt in sortedbamfile2rep1[region]:
 			counts2rep1[-1] += 1.0
 		counts2rep1[-1] /= (length/1000.0)
@@ -48,7 +48,7 @@ def run(BED,BAMS1,BAMS2,mil_reads):
 	counts2rep2 = list()
 	for region in bedfile:
 		counts2rep2.append(0.0)
-		length = region.length
+		length = region.length+2000
 		for almnt in sortedbamfile2rep2[region]:
 			counts2rep2[-1] += 1.0
 		counts2rep2[-1] /= (length/1000.0)
